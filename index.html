@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eğitimde Yapay Zekâ Vizyonu | Geleceğin Öğrenme Deneyimi</title>
+    <title id="page-title">AI in Education Vision | Future of Learning</title>
     <style>
         :root {
             --bg-dark: #070b19;
@@ -33,7 +33,7 @@
             line-height: 1.6;
         }
 
-        /* Arka Plan Canvas */
+        /* Background Canvas */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -44,7 +44,7 @@
             background: radial-gradient(circle at 50% 20%, #0f172a 0%, #050814 100%);
         }
 
-        /* Navigasyon */
+        /* Navigation */
         header {
             position: fixed;
             top: 0;
@@ -52,7 +52,7 @@
             z-index: 100;
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            background: rgba(7, 11, 25, 0.8);
+            background: rgba(7, 11, 25, 0.85);
             border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
@@ -107,6 +107,39 @@
             color: var(--primary);
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            display: inline-flex;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 0.2rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #050814;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+        }
+
         .nav-btn {
             padding: 0.55rem 1.25rem;
             border-radius: 999px;
@@ -125,7 +158,7 @@
             box-shadow: var(--glow);
         }
 
-        /* Hero Bölümü */
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             max-width: 1280px;
@@ -244,7 +277,7 @@
             border-color: var(--primary);
         }
 
-        /* 3D Küre / Geometrik Canvas Alanı */
+        /* 3D Sphere / Geometric Canvas Area */
         .hero-visual {
             display: flex;
             flex-direction: column;
@@ -273,7 +306,7 @@
             gap: 0.4rem;
         }
 
-        /* İstatistik Barı */
+        /* Stats Bar */
         .stats-bar {
             max-width: 1280px;
             margin: 0 auto 5rem;
@@ -306,7 +339,7 @@
             margin-top: 0.25rem;
         }
 
-        /* Bölüm Genel Stilleri */
+        /* Section General Styles */
         section {
             max-width: 1280px;
             margin: 0 auto;
@@ -330,7 +363,7 @@
             font-size: 1.05rem;
         }
 
-        /* 4 Vizyon Sütunu */
+        /* 4 Vision Pillars */
         .pillars-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -405,7 +438,7 @@
             color: var(--accent);
         }
 
-        /* İnteraktif Ders Entegrasyon Simülatörü */
+        /* Interactive Subject Integration Simulator */
         .interactive-panel {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -515,7 +548,7 @@
             transition: width 0.5s ease;
         }
 
-        /* Potansiyel Keşif Simülatörü (Radar Grafik) */
+        /* Potential Discovery Simulator (Radar Chart) */
         .radar-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -587,7 +620,7 @@
             color: #64748b;
         }
 
-        /* Mobil Uyumluluk */
+        /* Mobile Responsiveness */
         @media (max-width: 968px) {
             .hero, .interactive-panel, .radar-section {
                 grid-template-columns: 1fr;
@@ -613,10 +646,10 @@
 </head>
 <body>
 
-    <!-- Arka Plan Etkileşimli Sinir Ağı Canvas -->
+    <!-- Background Interactive Neural Network Canvas -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Üst Menü -->
+    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
@@ -625,79 +658,85 @@
                     <polyline points="2 17 12 22 22 17"></polyline>
                     <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                Eğitim<span>YZ</span>
+                <div id="logo-text">Edu<span>AI</span></div>
             </a>
             <nav>
                 <ul>
-                    <li><a href="#vizyon">Vizyonumuz</a></li>
-                    <li><a href="#temeller">Stratejik Temeller</a></li>
-                    <li><a href="#dersler">Ders Entegrasyonu</a></li>
-                    <li><a href="#potansiyel">Potansiyel Analizi</a></li>
+                    <li><a href="#vizyon" data-i18n="nav_vision">Our Vision</a></li>
+                    <li><a href="#temeller" data-i18n="nav_pillars">Strategic Pillars</a></li>
+                    <li><a href="#dersler" data-i18n="nav_subjects">Course Integration</a></li>
+                    <li><a href="#potansiyel" data-i18n="nav_potential">Potential Analysis</a></li>
                 </ul>
             </nav>
-            <a href="#dersler" class="nav-btn">Simülasyonu Deneyin</a>
+            <div class="nav-right">
+                <div class="lang-switch" role="group" aria-label="Language Selector">
+                    <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                    <button id="btn-tr" class="lang-btn" onclick="setLanguage('tr')">TR</button>
+                </div>
+                <a href="#dersler" class="nav-btn" data-i18n="nav_cta">Try Simulation</a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Bölümü -->
+    <!-- Hero Section -->
     <main id="vizyon" class="hero">
         <div class="hero-content">
             <div class="badge">
                 <span class="badge-dot"></span>
-                Geleceğin Eğitim Ekosistemi
+                <span data-i18n="hero_badge">Next-Generation Educational Ecosystem</span>
             </div>
-            <h1>Yapay Zekâ ile <span class="gradient-text">Eğitimi Dönüştüren</span> Yenilikçi Vizyon</h1>
+            <h1 data-i18n="hero_title">Innovative Vision <span class="gradient-text">Transforming Education</span> with AI</h1>
             
             <div class="vision-box">
-                <p>"Vizyonumuz, yapay zekâyı tüm derslerde etkin kullanarak eğitimi dönüştürmek; her öğrencinin potansiyelini keşfetmesini sağlayan, öğretmenleri güçlendiren ve geleceğin öğrenme deneyimlerini şekillendiren yenilikçi teknolojiler geliştirmektir."</p>
+                <p data-i18n="vision_quote">"Our vision is to transform education by effectively integrating artificial intelligence across all subjects; developing innovative technologies that enable every student to discover their potential, empower teachers, and shape the learning experiences of the future."</p>
             </div>
 
             <div class="hero-actions">
                 <a href="#temeller" class="btn-primary">
-                    Vizyon Yapıtaşlarını İncele
+                    <span data-i18n="btn_explore">Explore Vision Pillars</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </a>
-                <a href="#potansiyel" class="btn-secondary">Öğrenci Potansiyel Modeli</a>
+                <a href="#potansiyel" class="btn-secondary" data-i18n="btn_model">Student Potential Model</a>
             </div>
         </div>
 
-        <!-- 3D Etkileşimli Geometrik Küre (JavaScript Canvas) -->
+        <!-- 3D Interactive Geometric Sphere (JavaScript Canvas) -->
         <div class="hero-visual">
             <canvas id="sphere-canvas" width="440" height="440"></canvas>
             <span class="visual-caption">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                Fare ile 3B Bilgi Küresini döndürebilirsiniz
+                <span data-i18n="sphere_caption">Drag with mouse to rotate the 3D Knowledge Sphere</span>
             </span>
         </div>
     </main>
 
-    <!-- Özet Göstergeler -->
+    <!-- Summary Metrics -->
     <div class="stats-bar">
         <div class="stats-grid">
             <div class="stat-item">
-                <h3>%100</h3>
-                <p>Müfredat ve Ders Entegrasyonu</p>
+                <h3 data-i18n="stat1_val">100%</h3>
+                <p data-i18n="stat1_label">Curriculum & Course Integration</p>
             </div>
             <div class="stat-item">
-                <h3>360°</h3>
-                <p>Bireysel Potansiyel Haritalama</p>
+                <h3 data-i18n="stat2_val">360°</h3>
+                <p data-i18n="stat2_label">Individual Potential Mapping</p>
             </div>
             <div class="stat-item">
-                <h3>7/24</h3>
-                <p>Öğretmen Karar Destek Asistanı</p>
+                <h3 data-i18n="stat3_val">24/7</h3>
+                <p data-i18n="stat3_label">Teacher Decision Support Assistant</p>
             </div>
             <div class="stat-item">
-                <h3>Sıfır</h3>
-                <p>Dış Servis Bağımlılığı & Tam Gizlilik</p>
+                <h3 data-i18n="stat4_val">Zero</h3>
+                <p data-i18n="stat4_label">External Dependency & Full Privacy</p>
             </div>
         </div>
     </div>
 
-    <!-- 4 Temel Sütun -->
+    <!-- 4 Core Pillars -->
     <section id="temeller">
         <div class="section-header">
-            <h2>Vizyonumuzun <span class="gradient-text">Dört Ana Sütunu</span></h2>
-            <p>Eğitimde yapay zekâ dönüşümünü pedagojik ilkeler, veri etiği ve insan odaklı teknoloji tasarımıyla birleştiriyoruz.</p>
+            <h2 data-i18n="pillars_title">Four Core Pillars of <span class="gradient-text">Our Vision</span></h2>
+            <p data-i18n="pillars_sub">We combine AI transformation in education with pedagogical principles, data ethics, and human-centric technology design.</p>
         </div>
 
         <div class="pillars-grid">
@@ -708,9 +747,9 @@
                         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                     </svg>
                 </div>
-                <h3>Tüm Derslerde Etkin Kullanım</h3>
-                <p>Sadece bilişim derslerinde değil; Türkçe'den Matematiğe, Fen Bilimlerinden Sanat ve Sosyal Bilimlere kadar her disiplinde disiplinlerarası yapay zekâ entegrasyonu.</p>
-                <span class="pillar-tag">Bütüncül Müfredat</span>
+                <h3 data-i18n="p1_title">Effective Integration Across All Subjects</h3>
+                <p data-i18n="p1_desc">Interdisciplinary AI integration not only in computer science, but across every discipline from Language and Literature to Mathematics, Sciences, Arts, and Social Studies.</p>
+                <span class="pillar-tag" data-i18n="p1_tag">Holistic Curriculum</span>
             </div>
 
             <div class="pillar-card">
@@ -720,9 +759,9 @@
                         <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
                     </svg>
                 </div>
-                <h3>Potansiyeli Keşfetme</h3>
-                <p>Her öğrencinin öğrenme hızı, ilgi alanı ve bilişsel güçlü yönlerini analiz ederek kişiselleştirilmiş öğrenme rotaları oluşturan adaptif sistemler.</p>
-                <span class="pillar-tag">Bireyselleştirilmiş Öğrenme</span>
+                <h3 data-i18n="p2_title">Unlocking Student Potential</h3>
+                <p data-i18n="p2_desc">Adaptive systems that analyze each student's learning pace, interests, and cognitive strengths to generate personalized learning pathways.</p>
+                <span class="pillar-tag" data-i18n="p2_tag">Personalized Learning</span>
             </div>
 
             <div class="pillar-card">
@@ -734,9 +773,9 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
                 </div>
-                <h3>Öğretmenleri Güçlendirme</h3>
-                <p>Rutin değerlendirme ve planlama yükünü azaltıp öğretmene rehberlik, mentorluk ve birebir etkileşim için nitelikli zaman kazandıran akıllı araçlar.</p>
-                <span class="pillar-tag">Pedagojik Liderlik</span>
+                <h3 data-i18n="p3_title">Empowering Teachers</h3>
+                <p data-i18n="p3_desc">Intelligent tools that reduce routine assessment and planning workloads, freeing up quality time for teachers to focus on guidance, mentorship, and one-on-one interaction.</p>
+                <span class="pillar-tag" data-i18n="p3_tag">Pedagogical Leadership</span>
             </div>
 
             <div class="pillar-card">
@@ -745,40 +784,40 @@
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                 </div>
-                <h3>Geleceğin Öğrenme Deneyimi</h3>
-                <p>Simülasyonlar, etkileşimli görselleştirmeler ve üretken yapay zekâ laboratuvarları ile öğrencileri pasif dinleyiciden aktif üreticiye dönüştüren ortamlar.</p>
-                <span class="pillar-tag">Yenilikçi Teknolojiler</span>
+                <h3 data-i18n="p4_title">Future Learning Experiences</h3>
+                <p data-i18n="p4_desc">Environments featuring simulations, interactive visualizations, and generative AI labs that transform students from passive listeners into active creators.</p>
+                <span class="pillar-tag" data-i18n="p4_tag">Innovative Technologies</span>
             </div>
         </div>
     </section>
 
-    <!-- İnteraktif Ders Entegrasyon Simülatörü -->
+    <!-- Interactive Subject Integration Simulator -->
     <section id="dersler">
         <div class="section-header">
-            <h2>Derslerde <span class="gradient-text">Yapay Zekâ Sinerjisi</span></h2>
-            <p>Farklı ders disiplinlerinde yapay zekâ modellerinin öğrenme süreçlerini nasıl zenginleştirdiğini seçerek inceleyin.</p>
+            <h2 data-i18n="subj_sec_title">AI Synergy <span class="gradient-text">Across Subjects</span></h2>
+            <p data-i18n="subj_sec_sub">Select a subject discipline below to explore how AI models enrich learning processes in real time.</p>
         </div>
 
         <div class="interactive-panel">
             <div class="subject-tabs">
                 <button class="subject-btn active" onclick="selectSubject(0)">
-                    <span>📐 Matematik & Algoritmik Düşünce</span>
+                    <span data-i18n="tab_0">📐 Mathematics & Algorithmic Thinking</span>
                     <span>→</span>
                 </button>
                 <button class="subject-btn" onclick="selectSubject(1)">
-                    <span>📖 Dil, Edebiyat & Okuma-Yazma</span>
+                    <span data-i18n="tab_1">📖 Language, Literature & Literacy</span>
                     <span>→</span>
                 </button>
                 <button class="subject-btn" onclick="selectSubject(2)">
-                    <span>🔬 Fen Bilimleri & Doğa Simülasyonu</span>
+                    <span data-i18n="tab_2">🔬 Science & Nature Simulation</span>
                     <span>→</span>
                 </button>
                 <button class="subject-btn" onclick="selectSubject(3)">
-                    <span>🎨 Görsel Sanatlar & Yaratıcı Tasarım</span>
+                    <span data-i18n="tab_3">🎨 Visual Arts & Creative Design</span>
                     <span>→</span>
                 </button>
                 <button class="subject-btn" onclick="selectSubject(4)">
-                    <span>🌍 Sosyal Bilgiler & Kültür Analizi</span>
+                    <span data-i18n="tab_4">🌍 Social Studies & Cultural Analysis</span>
                     <span>→</span>
                 </button>
             </div>
@@ -786,15 +825,15 @@
             <div class="subject-display">
                 <canvas id="wave-canvas" width="600" height="170"></canvas>
                 <div class="subject-info">
-                    <h3 id="subj-title">Matematik & Algoritmik Düşünce</h3>
-                    <p id="subj-desc">Öğrencinin problem çözme adımlarını gerçek zamanlı analiz eder; kavram yanılgılarını tespit ederek soyut formülleri etkileşimli geometrik modellere dönüştürür.</p>
+                    <h3 id="subj-title">Mathematics & Algorithmic Thinking</h3>
+                    <p id="subj-desc">Analyzes student problem-solving steps in real time; identifies misconceptions and transforms abstract formulas into interactive 3D geometric models.</p>
                     <div class="metrics">
                         <div class="metric-box">
-                            <span class="metric-label">Kavramsal Kalıcılık Artışı: <strong id="m1-val">%92</strong></span>
+                            <span class="metric-label"><span data-i18n="metric1_label">Conceptual Retention Boost:</span> <strong id="m1-val">92%</strong></span>
                             <div class="progress-bar"><div id="m1-bar" class="progress-fill" style="width: 92%;"></div></div>
                         </div>
                         <div class="metric-box">
-                            <span class="metric-label">Bireysel Hıza Uyum Oranı: <strong id="m2-val">%96</strong></span>
+                            <span class="metric-label"><span data-i18n="metric2_label">Individual Pace Adaptation:</span> <strong id="m2-val">96%</strong></span>
                             <div class="progress-bar"><div id="m2-bar" class="progress-fill" style="width: 96%;"></div></div>
                         </div>
                     </div>
@@ -803,39 +842,39 @@
         </div>
     </section>
 
-    <!-- Öğrenci Potansiyeli Radar Grafiği -->
+    <!-- Student Potential Radar Chart -->
     <section id="potansiyel">
         <div class="section-header">
-            <h2>Öğrenci Potansiyeli <span class="gradient-text">Keşif Simülatörü</span></h2>
-            <p>Kaydırıcıları değiştirerek yapay zekâ destekli öğrenme ortamlarının öğrenci yetkinlik poligonunu nasıl genişlettiğini gözlemleyin.</p>
+            <h2 data-i18n="radar_sec_title">Student Potential <span class="gradient-text">Discovery Simulator</span></h2>
+            <p data-i18n="radar_sec_sub">Adjust the sliders to observe how AI-assisted learning environments expand the student competency polygon.</p>
         </div>
 
         <div class="radar-section">
             <div>
-                <h3>Çok Boyutlu Gelişim Haritası</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
-                    Standart sınav odaklı değerlendirmeler yerine, öğrencinin merakını, analitik düşüncesini ve yaratıcılığını bütüncül olarak izleyen dinamik geometri modeli:
+                <h3 data-i18n="radar_box_title">Multi-Dimensional Growth Map</h3>
+                <p data-i18n="radar_box_sub" style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+                    Instead of standard exam-oriented assessments, a dynamic geometry model that holistically tracks a student's curiosity, analytical thinking, and creativity:
                 </p>
 
                 <div class="controls-list">
                     <div class="control-item">
-                        <label><span>Analitik Problem Çözme</span> <span id="v0">88%</span></label>
+                        <label><span data-i18n="slider_0">Analytical Problem Solving</span> <span id="v0">88%</span></label>
                         <input type="range" min="30" max="100" value="88" oninput="updateRadar(0, this.value)">
                     </div>
                     <div class="control-item">
-                        <label><span>Yaratıcı ve Üretken Düşünme</span> <span id="v1">85%</span></label>
+                        <label><span data-i18n="slider_1">Creative & Generative Thinking</span> <span id="v1">85%</span></label>
                         <input type="range" min="30" max="100" value="85" oninput="updateRadar(1, this.value)">
                     </div>
                     <div class="control-item">
-                        <label><span>Dijital & YZ Okuryazarlığı</span> <span id="v2">94%</span></label>
+                        <label><span data-i18n="slider_2">Digital & AI Literacy</span> <span id="v2">94%</span></label>
                         <input type="range" min="30" max="100" value="94" oninput="updateRadar(2, this.value)">
                     </div>
                     <div class="control-item">
-                        <label><span>İşbirlikçi Öğrenme & İletişim</span> <span id="v3">82%</span></label>
+                        <label><span data-i18n="slider_3">Collaborative Learning & Communication</span> <span id="v3">82%</span></label>
                         <input type="range" min="30" max="100" value="82" oninput="updateRadar(3, this.value)">
                     </div>
                     <div class="control-item">
-                        <label><span>Öz-Düzenleme & Merak Güdüsü</span> <span id="v4">90%</span></label>
+                        <label><span data-i18n="slider_4">Self-Regulation & Curiosity Drive</span> <span id="v4">90%</span></label>
                         <input type="range" min="30" max="100" value="90" oninput="updateRadar(4, this.value)">
                     </div>
                 </div>
@@ -847,7 +886,7 @@
         </div>
     </section>
 
-    <!-- Alt Bilgi -->
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <a href="#" class="logo" style="justify-content: center;">
@@ -856,21 +895,233 @@
                     <polyline points="2 17 12 22 22 17"></polyline>
                     <polyline points="2 12 12 17 22 12"></polyline>
                 </svg>
-                Eğitim<span>YZ</span> Vizyon Platformu
+                <div id="footer-logo-text">Edu<span>AI</span> Vision Platform</div>
             </a>
-            <p class="footer-vision">
-                Yapay zekâyı tüm derslerde etkin kullanarak eğitimi dönüştürmek; her öğrencinin potansiyelini keşfetmesini sağlayan, öğretmenleri güçlendiren ve geleceğin öğrenme deneyimlerini şekillendiren yenilikçi teknolojiler geliştirmek.
+            <p class="footer-vision" data-i18n="footer_vision">
+                Transforming education by effectively integrating artificial intelligence across all subjects; developing innovative technologies that enable every student to discover their potential, empower teachers, and shape the learning experiences of the future.
             </p>
-            <p class="copyright">
-                © 2026 Eğitimde Yapay Zekâ Vizyonu • %100 Yerel ve Bağımsız HTML5 / Canvas Mimarisi ile Çalışır.
+            <p class="copyright" data-i18n="footer_copy">
+                © 2026 AI in Education Vision • Powered by 100% Local & Standalone HTML5 / Canvas Architecture.
             </p>
         </div>
     </footer>
 
-    <!-- Saf JavaScript: Geometrik Şekiller, Animasyonlar ve Etkileşim -->
+    <!-- Pure JavaScript: Bilingual Dictionary, Geometric Shapes & Interactive Simulations -->
     <script>
         /* ==========================================================
-           1. ARKA PLAN ETKİLEŞİMLİ SİNİR AĞI VE GEOMETRİK PARÇACIKLAR
+           0. BILINGUAL DICTIONARY (100% OFFLINE EN & TR SUPPORT)
+           ========================================================== */
+        let currentLang = 'en'; // Default language on initial load: English
+        let currentSubjectIndex = 0;
+
+        const i18n = {
+            en: {
+                page_title: "AI in Education Vision | Future of Learning",
+                logo_html: "Edu<span>AI</span>",
+                footer_logo_html: "Edu<span>AI</span> Vision Platform",
+                nav_vision: "Our Vision",
+                nav_pillars: "Strategic Pillars",
+                nav_subjects: "Course Integration",
+                nav_potential: "Potential Analysis",
+                nav_cta: "Try Simulation",
+                hero_badge: "Next-Generation Educational Ecosystem",
+                hero_title: 'Innovative Vision <span class="gradient-text">Transforming Education</span> with AI',
+                vision_quote: '"Our vision is to transform education by effectively integrating artificial intelligence across all subjects; developing innovative technologies that enable every student to discover their potential, empower teachers, and shape the learning experiences of the future."',
+                btn_explore: "Explore Vision Pillars",
+                btn_model: "Student Potential Model",
+                sphere_caption: "Drag with mouse to rotate the 3D Knowledge Sphere",
+                stat1_val: "100%",
+                stat1_label: "Curriculum & Course Integration",
+                stat2_val: "360°",
+                stat2_label: "Individual Potential Mapping",
+                stat3_val: "24/7",
+                stat3_label: "Teacher Decision Support Assistant",
+                stat4_val: "Zero",
+                stat4_label: "External Dependency & Full Privacy",
+                pillars_title: 'Four Core Pillars of <span class="gradient-text">Our Vision</span>',
+                pillars_sub: "We combine AI transformation in education with pedagogical principles, data ethics, and human-centric technology design.",
+                p1_title: "Effective Integration Across All Subjects",
+                p1_desc: "Interdisciplinary AI integration not only in computer science, but across every discipline from Language and Literature to Mathematics, Sciences, Arts, and Social Studies.",
+                p1_tag: "Holistic Curriculum",
+                p2_title: "Unlocking Student Potential",
+                p2_desc: "Adaptive systems that analyze each student's learning pace, interests, and cognitive strengths to generate personalized learning pathways.",
+                p2_tag: "Personalized Learning",
+                p3_title: "Empowering Teachers",
+                p3_desc: "Intelligent tools that reduce routine assessment and planning workloads, freeing up quality time for teachers to focus on guidance, mentorship, and one-on-one interaction.",
+                p3_tag: "Pedagogical Leadership",
+                p4_title: "Future Learning Experiences",
+                p4_desc: "Environments featuring simulations, interactive visualizations, and generative AI labs that transform students from passive listeners into active creators.",
+                p4_tag: "Innovative Technologies",
+                subj_sec_title: 'AI Synergy <span class="gradient-text">Across Subjects</span>',
+                subj_sec_sub: "Select a subject discipline below to explore how AI models enrich learning processes in real time.",
+                tab_0: "📐 Mathematics & Algorithmic Thinking",
+                tab_1: "📖 Language, Literature & Literacy",
+                tab_2: "🔬 Science & Nature Simulation",
+                tab_3: "🎨 Visual Arts & Creative Design",
+                tab_4: "🌍 Social Studies & Cultural Analysis",
+                metric1_label: "Conceptual Retention Boost:",
+                metric2_label: "Individual Pace Adaptation:",
+                radar_sec_title: 'Student Potential <span class="gradient-text">Discovery Simulator</span>',
+                radar_sec_sub: "Adjust the sliders to observe how AI-assisted learning environments expand the student competency polygon.",
+                radar_box_title: "Multi-Dimensional Growth Map",
+                radar_box_sub: "Instead of standard exam-oriented assessments, a dynamic geometry model that holistically tracks a student's curiosity, analytical thinking, and creativity:",
+                slider_0: "Analytical Problem Solving",
+                slider_1: "Creative & Generative Thinking",
+                slider_2: "Digital & AI Literacy",
+                slider_3: "Collaborative Learning & Communication",
+                slider_4: "Self-Regulation & Curiosity Drive",
+                footer_vision: "Transforming education by effectively integrating artificial intelligence across all subjects; developing innovative technologies that enable every student to discover their potential, empower teachers, and shape the learning experiences of the future.",
+                footer_copy: "© 2026 AI in Education Vision • Powered by 100% Local & Standalone HTML5 / Canvas Architecture.",
+                radar_labels: ["Analytical", "Creativity", "AI Literacy", "Communication", "Curiosity & Self-Reg."],
+                subjects: [
+                    {
+                        title: "Mathematics & Algorithmic Thinking",
+                        desc: "Analyzes student problem-solving steps in real time; identifies misconceptions and transforms abstract formulas into interactive 3D geometric models.",
+                        m1: 92, m2: 96, freq: 0.025, amp: 38, color: "#38bdf8"
+                    },
+                    {
+                        title: "Language, Literature & Literacy",
+                        desc: "Supports phonics, pronunciation, and creative writing skills from early literacy to advanced text analysis with personalized feedback.",
+                        m1: 94, m2: 91, freq: 0.018, amp: 45, color: "#2dd4bf"
+                    },
+                    {
+                        title: "Science & Nature Simulation",
+                        desc: "Makes laboratory experiments safe through virtual simulations; animates ecosystems, laws of physics, and space models based on student hypotheses.",
+                        m1: 95, m2: 89, freq: 0.032, amp: 32, color: "#818cf8"
+                    },
+                    {
+                        title: "Visual Arts & Creative Design",
+                        desc: "Develops artistic expression through visual composition, 3D modeling, and color theory tools that nurture students' imagination.",
+                        m1: 89, m2: 98, freq: 0.015, amp: 50, color: "#f472b6"
+                    },
+                    {
+                        title: "Social Studies & Cultural Analysis",
+                        desc: "Brings historical events, geographical data, and cultural heritage to life through interactive timelines and map simulations.",
+                        m1: 90, m2: 93, freq: 0.022, amp: 35, color: "#fbbf24"
+                    }
+                ]
+            },
+            tr: {
+                page_title: "Eğitimde Yapay Zekâ Vizyonu | Geleceğin Öğrenme Deneyimi",
+                logo_html: "Eğitim<span>YZ</span>",
+                footer_logo_html: "Eğitim<span>YZ</span> Vizyon Platformu",
+                nav_vision: "Vizyonumuz",
+                nav_pillars: "Stratejik Temeller",
+                nav_subjects: "Ders Entegrasyonu",
+                nav_potential: "Potansiyel Analizi",
+                nav_cta: "Simülasyonu Deneyin",
+                hero_badge: "Geleceğin Eğitim Ekosistemi",
+                hero_title: 'Yapay Zekâ ile <span class="gradient-text">Eğitimi Dönüştüren</span> Yenilikçi Vizyon',
+                vision_quote: '"Vizyonumuz, yapay zekâyı tüm derslerde etkin kullanarak eğitimi dönüştürmek; her öğrencinin potansiyelini keşfetmesini sağlayan, öğretmenleri güçlendiren ve geleceğin öğrenme deneyimlerini şekillendiren yenilikçi teknolojiler geliştirmektir."',
+                btn_explore: "Vizyon Yapıtaşlarını İncele",
+                btn_model: "Öğrenci Potansiyel Modeli",
+                sphere_caption: "Fare ile 3B Bilgi Küresini döndürebilirsiniz",
+                stat1_val: "%100",
+                stat1_label: "Müfredat ve Ders Entegrasyonu",
+                stat2_val: "360°",
+                stat2_label: "Bireysel Potansiyel Haritalama",
+                stat3_val: "7/24",
+                stat3_label: "Öğretmen Karar Destek Asistanı",
+                stat4_val: "Sıfır",
+                stat4_label: "Dış Servis Bağımlılığı & Tam Gizlilik",
+                pillars_title: 'Vizyonumuzun <span class="gradient-text">Dört Ana Sütunu</span>',
+                pillars_sub: "Eğitimde yapay zekâ dönüşümünü pedagojik ilkeler, veri etiği ve insan odaklı teknoloji tasarımıyla birleştiriyoruz.",
+                p1_title: "Tüm Derslerde Etkin Kullanım",
+                p1_desc: "Sadece bilişim derslerinde değil; Türkçe'den Matematiğe, Fen Bilimlerinden Sanat ve Sosyal Bilimlere kadar her disiplinde disiplinlerarası yapay zekâ entegrasyonu.",
+                p1_tag: "Bütüncül Müfredat",
+                p2_title: "Potansiyeli Keşfetme",
+                p2_desc: "Her öğrencinin öğrenme hızı, ilgi alanı ve bilişsel güçlü yönlerini analiz ederek kişiselleştirilmiş öğrenme rotaları oluşturan adaptif sistemler.",
+                p2_tag: "Bireyselleştirilmiş Öğrenme",
+                p3_title: "Öğretmenleri Güçlendirme",
+                p3_desc: "Rutin değerlendirme ve planlama yükünü azaltıp öğretmene rehberlik, mentorluk ve birebir etkileşim için nitelikli zaman kazandıran akıllı araçlar.",
+                p3_tag: "Pedagojik Liderlik",
+                p4_title: "Geleceğin Öğrenme Deneyimi",
+                p4_desc: "Simülasyonlar, etkileşimli görselleştirmeler ve üretken yapay zekâ laboratuvarları ile öğrencileri pasif dinleyiciden aktif üreticiye dönüştüren ortamlar.",
+                p4_tag: "Yenilikçi Teknolojiler",
+                subj_sec_title: 'Derslerde <span class="gradient-text">Yapay Zekâ Sinerjisi</span>',
+                subj_sec_sub: "Farklı ders disiplinlerinde yapay zekâ modellerinin öğrenme süreçlerini nasıl zenginleştirdiğini seçerek inceleyin.",
+                tab_0: "📐 Matematik & Algoritmik Düşünce",
+                tab_1: "📖 Dil, Edebiyat & Okuma-Yazma",
+                tab_2: "🔬 Fen Bilimleri & Doğa Simülasyonu",
+                tab_3: "🎨 Görsel Sanatlar & Yaratıcı Tasarım",
+                tab_4: "🌍 Sosyal Bilgiler & Kültür Analizi",
+                metric1_label: "Kavramsal Kalıcılık Artışı:",
+                metric2_label: "Bireysel Hıza Uyum Oranı:",
+                radar_sec_title: 'Öğrenci Potansiyeli <span class="gradient-text">Keşif Simülatörü</span>',
+                radar_sec_sub: "Kaydırıcıları değiştirerek yapay zekâ destekli öğrenme ortamlarının öğrenci yetkinlik poligonunu nasıl genişlettiğini gözlemleyin.",
+                radar_box_title: "Çok Boyutlu Gelişim Haritası",
+                radar_box_sub: "Standart sınav odaklı değerlendirmeler yerine, öğrencinin merakını, analitik düşüncesini ve yaratıcılığını bütüncül olarak izleyen dinamik geometri modeli:",
+                slider_0: "Analitik Problem Çözme",
+                slider_1: "Yaratıcı ve Üretken Düşünme",
+                slider_2: "Dijital & YZ Okuryazarlığı",
+                slider_3: "İşbirlikçi Öğrenme & İletişim",
+                slider_4: "Öz-Düzenleme & Merak Güdüsü",
+                footer_vision: "Yapay zekâyı tüm derslerde etkin kullanarak eğitimi dönüştürmek; her öğrencinin potansiyelini keşfetmesini sağlayan, öğretmenleri güçlendiren ve geleceğin öğrenme deneyimlerini şekillendiren yenilikçi teknolojiler geliştirmek.",
+                footer_copy: "© 2026 Eğitimde Yapay Zekâ Vizyonu • %100 Yerel ve Bağımsız HTML5 / Canvas Mimarisi ile Çalışır.",
+                radar_labels: ["Analitik", "Yaratıcılık", "YZ Okuryazarlığı", "İletişim", "Merak & Öz-Düzenleme"],
+                subjects: [
+                    {
+                        title: "Matematik & Algoritmik Düşünce",
+                        desc: "Öğrencinin problem çözme adımlarını gerçek zamanlı analiz eder; kavram yanılgılarını tespit ederek soyut formülleri etkileşimli 3B geometrik modellere dönüştürür.",
+                        m1: 92, m2: 96, freq: 0.025, amp: 38, color: "#38bdf8"
+                    },
+                    {
+                        title: "Dil, Edebiyat & Okuma-Yazma",
+                        desc: "İlk okuma-yazma süreçlerinden ileri metin analizlerine kadar ses, telaffuz ve yaratıcı yazarlık becerilerini kişiselleştirilmiş geri bildirimlerle destekler.",
+                        m1: 94, m2: 91, freq: 0.018, amp: 45, color: "#2dd4bf"
+                    },
+                    {
+                        title: "Fen Bilimleri & Doğa Simülasyonu",
+                        desc: "Laboratuvar deneylerini sanal simülasyonlarla güvenli hale getirir; ekosistem, fizik yasaları ve uzay modellerini öğrencinin hipotezlerine göre canlandırır.",
+                        m1: 95, m2: 89, freq: 0.032, amp: 32, color: "#818cf8"
+                    },
+                    {
+                        title: "Görsel Sanatlar & Yaratıcı Tasarım",
+                        desc: "Öğrencilerin hayal gücünü destekleyen görsel kompozisyon, 3B modelleme ve renk teorisi araçlarıyla sanatsal ifade yeteneklerini geliştirir.",
+                        m1: 89, m2: 98, freq: 0.015, amp: 50, color: "#f472b6"
+                    },
+                    {
+                        title: "Sosyal Bilgiler & Kültür Analizi",
+                        desc: "Tarihsel olayları, coğrafi verileri ve kültürel mirası etkileşimli zaman çizelgeleri ve harita simülasyonlarıyla somutlaştırır.",
+                        m1: 90, m2: 93, freq: 0.022, amp: 35, color: "#fbbf24"
+                    }
+                ]
+            }
+        };
+
+        function formatPercent(val) {
+            return currentLang === 'tr' ? `%${val}` : `${val}%`;
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+
+            const dict = i18n[lang];
+            document.title = dict.page_title;
+            document.getElementById('logo-text').innerHTML = dict.logo_html;
+            document.getElementById('footer-logo-text').innerHTML = dict.footer_logo_html;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            selectSubject(currentSubjectIndex);
+
+            for (let i = 0; i < 5; i++) {
+                document.getElementById(`v${i}`).textContent = formatPercent(radarValues[i]);
+            }
+            drawRadar();
+        }
+
+        /* ==========================================================
+           1. BACKGROUND INTERACTIVE NEURAL NETWORK & GEOMETRIC PARTICLES
            ========================================================== */
         const bgCanvas = document.getElementById('bg-canvas');
         const bgCtx = bgCanvas.getContext('2d');
@@ -896,7 +1147,7 @@
                 this.size = Math.random() * 2.5 + 1;
                 this.vx = (Math.random() - 0.5) * 0.6;
                 this.vy = (Math.random() - 0.5) * 0.6;
-                this.shape = Math.floor(Math.random() * 3); // 0: Daire, 1: Kare, 2: Üçgen
+                this.shape = Math.floor(Math.random() * 3);
             }
 
             update() {
@@ -970,7 +1221,7 @@
         animateBg();
 
         /* ==========================================================
-           2. HERO 3B ETKİLEŞİMLİ BİLGİ KÜRESİ (3D ICOSAHEDRON & NODES)
+           2. HERO 3D INTERACTIVE KNOWLEDGE SPHERE (3D POLYHEDRON)
            ========================================================== */
         const sphereCanvas = document.getElementById('sphere-canvas');
         const sCtx = sphereCanvas.getContext('2d');
@@ -1081,51 +1332,24 @@
         animateSphere();
 
         /* ==========================================================
-           3. DERS ENTEGRASYON SİMÜLATÖRÜ VE HARMONİK DALGA CANVAS'I
+           3. COURSE INTEGRATION SIMULATOR & HARMONIC WAVE CANVAS
            ========================================================== */
-        const subjects = [
-            {
-                title: "Matematik & Algoritmik Düşünce",
-                desc: "Öğrencinin problem çözme adımlarını gerçek zamanlı analiz eder; kavram yanılgılarını tespit ederek soyut formülleri etkileşimli 3B geometrik modellere dönüştürür.",
-                m1: 92, m2: 96, freq: 0.025, amp: 38, color: "#38bdf8"
-            },
-            {
-                title: "Dil, Edebiyat & Okuma-Yazma",
-                desc: "İlk okuma-yazma süreçlerinden ileri metin analizlerine kadar ses, telaffuz ve yaratıcı yazarlık becerilerini kişiselleştirilmiş geri bildirimlerle destekler.",
-                m1: 94, m2: 91, freq: 0.018, amp: 45, color: "#2dd4bf"
-            },
-            {
-                title: "Fen Bilimleri & Doğa Simülasyonu",
-                desc: "Laboratuvar deneylerini sanal simülasyonlarla güvenli hale getirir; ekosistem, fizik yasaları ve uzay modellerini öğrencinin hipotezlerine göre canlandırır.",
-                m1: 95, m2: 89, freq: 0.032, amp: 32, color: "#818cf8"
-            },
-            {
-                title: "Görsel Sanatlar & Yaratıcı Tasarım",
-                desc: "Öğrencilerin hayal gücünü destekleyen görsel kompozisyon, 3B modelleme ve renk teorisi araçlarıyla sanatsal ifade yeteneklerini geliştirir.",
-                m1: 89, m2: 98, freq: 0.015, amp: 50, color: "#f472b6"
-            },
-            {
-                title: "Sosyal Bilgiler & Kültür Analizi",
-                desc: "Tarihsel olayları, coğrafi verileri ve kültürel mirası etkileşimli zaman çizelgeleri ve harita simülasyonlarıyla somutlaştırır.",
-                m1: 90, m2: 93, freq: 0.022, amp: 35, color: "#fbbf24"
-            }
-        ];
-
-        let currentSubj = subjects[0];
+        let currentSubj = i18n[currentLang].subjects[0];
         let wavePhase = 0;
         const waveCanvas = document.getElementById('wave-canvas');
         const wCtx = waveCanvas.getContext('2d');
 
         function selectSubject(index) {
-            currentSubj = subjects[index];
+            currentSubjectIndex = index;
+            currentSubj = i18n[currentLang].subjects[index];
             document.querySelectorAll('.subject-btn').forEach((btn, idx) => {
                 btn.classList.toggle('active', idx === index);
             });
             document.getElementById('subj-title').textContent = currentSubj.title;
             document.getElementById('subj-desc').textContent = currentSubj.desc;
-            document.getElementById('m1-val').textContent = `%${currentSubj.m1}`;
+            document.getElementById('m1-val').textContent = formatPercent(currentSubj.m1);
             document.getElementById('m1-bar').style.width = `${currentSubj.m1}%`;
-            document.getElementById('m2-val').textContent = `%${currentSubj.m2}`;
+            document.getElementById('m2-val').textContent = formatPercent(currentSubj.m2);
             document.getElementById('m2-bar').style.width = `${currentSubj.m2}%`;
         }
 
@@ -1154,16 +1378,15 @@
         animateWave();
 
         /* ==========================================================
-           4. ÖĞRENCİ POTANSİYELİ RADAR (POLİGON) GRAFİĞİ
+           4. STUDENT POTENTIAL RADAR (POLYGON) CHART
            ========================================================== */
         const radarCanvas = document.getElementById('radar-canvas');
         const rCtx = radarCanvas.getContext('2d');
-        const radarLabels = ["Analitik", "Yaratıcılık", "YZ Okuryazarlığı", "İletişim", "Merak & Öz-Düzenleme"];
         const radarValues = [88, 85, 94, 82, 90];
 
         function updateRadar(index, val) {
             radarValues[index] = Number(val);
-            document.getElementById(`v${index}`).textContent = `${val}%`;
+            document.getElementById(`v${index}`).textContent = formatPercent(val);
             drawRadar();
         }
 
@@ -1171,8 +1394,9 @@
             rCtx.clearRect(0, 0, radarCanvas.width, radarCanvas.height);
             const cx = radarCanvas.width / 2;
             const cy = radarCanvas.height / 2;
-            const maxR = 130;
-            const sides = radarLabels.length;
+            const maxR = 125;
+            const labels = i18n[currentLang].radar_labels;
+            const sides = labels.length;
 
             for (let level = 1; level <= 4; level++) {
                 const r = (maxR / 4) * level;
@@ -1201,13 +1425,13 @@
                 rCtx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
                 rCtx.stroke();
 
-                const lx = cx + (maxR + 28) * Math.cos(angle);
-                const ly = cy + (maxR + 20) * Math.sin(angle);
+                const lx = cx + (maxR + 30) * Math.cos(angle);
+                const ly = cy + (maxR + 22) * Math.sin(angle);
                 rCtx.fillStyle = '#cbd5e1';
-                rCtx.font = '600 12px Segoe UI, sans-serif';
+                rCtx.font = '600 11.5px Segoe UI, sans-serif';
                 rCtx.textAlign = 'center';
                 rCtx.textBaseline = 'middle';
-                rCtx.fillText(radarLabels[i], lx, ly);
+                rCtx.fillText(labels[i], lx, ly);
             }
 
             rCtx.beginPath();
