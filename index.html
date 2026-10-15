@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eğitimde Yapay Zekâ Vizyonu | Geleceğin Öğrenme Deneyimi</title>
+    <style>
+        :root {
+            --bg-dark: #070b19;
+            --bg-card: rgba(17, 25, 48, 0.72);
+            --bg-glass: rgba(255, 255, 255, 0.04);
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #2dd4bf;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(148, 163, 184, 0.15);
+            --glow: 0 0 25px rgba(56, 189, 248, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Arka Plan Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 20%, #0f172a 0%, #050814 100%);
+        }
+
+        /* Navigasyon */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(7, 11, 25, 0.8);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 34px;
+            height: 34px;
+            stroke: var(--primary);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.25s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn {
+            padding: 0.55rem 1.25rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15));
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: #070b19;
+            box-shadow: var(--glow);
+        }
+
+        /* Hero Bölümü */
+        .hero {
+            min-height: 100vh;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.35);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 4.5vw, 3.8rem);
+            line-height: 1.15;
+            font-weight: 850;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #2dd4bf 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .vision-box {
+            position: relative;
+            padding: 1.5rem 1.75rem;
+            background: var(--bg-card);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 16px 16px 0;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            margin-bottom: 2.2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .vision-box p {
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #050814;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: transform 0.25s, box-shadow 0.25s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            background: var(--bg-glass);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.25s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+        }
+
+        /* 3D Küre / Geometrik Canvas Alanı */
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #sphere-canvas {
+            width: 440px;
+            height: 440px;
+            max-width: 100%;
+            cursor: grab;
+        }
+
+        #sphere-canvas:active {
+            cursor: grabbing;
+        }
+
+        .visual-caption {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: -10px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* İstatistik Barı */
+        .stats-bar {
+            max-width: 1280px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            gap: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Bölüm Genel Stilleri */
+        section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* 4 Vizyon Sütunu */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.2rem 1.8rem;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pillar-card:hover::before {
+            opacity: 1;
+        }
+
+        .icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .pillar-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .pillar-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .pillar-tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+        }
+
+        /* İnteraktif Ders Entegrasyon Simülatörü */
+        .interactive-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(14px);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .subject-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .subject-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 1.1rem 1.4rem;
+            border-radius: 14px;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .subject-btn:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            background: rgba(56, 189, 248, 0.06);
+        }
+
+        .subject-btn.active {
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .subject-display {
+            background: rgba(7, 11, 25, 0.75);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        #wave-canvas {
+            width: 100%;
+            height: 170px;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.6);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .subject-info h3 {
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .subject-info p {
+            color: #cbd5e1;
+            font-size: 0.98rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .metric-box {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.9rem 1.1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.4rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 999px;
+            transition: width 0.5s ease;
+        }
+
+        /* Potansiyel Keşif Simülatörü (Radar Grafik) */
+        .radar-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+        }
+
+        .controls-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .control-item label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #e2e8f0;
+        }
+
+        .control-item input[type="range"] {
+            width: 100%;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .radar-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #radar-canvas {
+            width: 380px;
+            height: 380px;
+            max-width: 100%;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            background: rgba(5, 8, 20, 0.9);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-vision {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .copyright {
+            font-size: 0.82rem;
+            color: #64748b;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 968px) {
+            .hero, .interactive-panel, .radar-section {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            nav ul {
+                display: none;
+            }
+            .hero {
+                padding-top: 6.5rem;
+                text-align: center;
+            }
+            .vision-box {
+                text-align: left;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka Plan Etkileşimli Sinir Ağı Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Üst Menü -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Eğitim<span>YZ</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#vizyon">Vizyonumuz</a></li>
+                    <li><a href="#temeller">Stratejik Temeller</a></li>
+                    <li><a href="#dersler">Ders Entegrasyonu</a></li>
+                    <li><a href="#potansiyel">Potansiyel Analizi</a></li>
+                </ul>
+            </nav>
+            <a href="#dersler" class="nav-btn">Simülasyonu Deneyin</a>
+        </div>
+    </header>
+
+    <!-- Hero Bölümü -->
+    <main id="vizyon" class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Geleceğin Eğitim Ekosistemi
+            </div>
+            <h1>Yapay Zekâ ile <span class="gradient-text">Eğitimi Dönüştüren</span> Yenilikçi Vizyon</h1>
+            
+            <div class="vision-box">
+                <p>"Vizyonumuz, yapay zekâyı tüm derslerde etkin kullanarak eğitimi dönüştürmek; her öğrencinin potansiyelini keşfetmesini sağlayan, öğretmenleri güçlendiren ve geleceğin öğrenme deneyimlerini şekillendiren yenilikçi teknolojiler geliştirmektir."</p>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#temeller" class="btn-primary">
+                    Vizyon Yapıtaşlarını İncele
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#potansiyel" class="btn-secondary">Öğrenci Potansiyel Modeli</a>
+            </div>
+        </div>
+
+        <!-- 3D Etkileşimli Geometrik Küre (JavaScript Canvas) -->
+        <div class="hero-visual">
+            <canvas id="sphere-canvas" width="440" height="440"></canvas>
+            <span class="visual-caption">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                Fare ile 3B Bilgi Küresini döndürebilirsiniz
+            </span>
+        </div>
+    </main>
+
+    <!-- Özet Göstergeler -->
+    <div class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>%100</h3>
+                <p>Müfredat ve Ders Entegrasyonu</p>
+            </div>
+            <div class="stat-item">
+                <h3>360°</h3>
+                <p>Bireysel Potansiyel Haritalama</p>
+            </div>
+            <div class="stat-item">
+                <h3>7/24</h3>
+                <p>Öğretmen Karar Destek Asistanı</p>
+            </div>
+            <div class="stat-item">
+                <h3>Sıfır</h3>
+                <p>Dış Servis Bağımlılığı & Tam Gizlilik</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4 Temel Sütun -->
+    <section id="temeller">
+        <div class="section-header">
+            <h2>Vizyonumuzun <span class="gradient-text">Dört Ana Sütunu</span></h2>
+            <p>Eğitimde yapay zekâ dönüşümünü pedagojik ilkeler, veri etiği ve insan odaklı teknoloji tasarımıyla birleştiriyoruz.</p>
+        </div>
+
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3>Tüm Derslerde Etkin Kullanım</h3>
+                <p>Sadece bilişim derslerinde değil; Türkçe'den Matematiğe, Fen Bilimlerinden Sanat ve Sosyal Bilimlere kadar her disiplinde disiplinlerarası yapay zekâ entegrasyonu.</p>
+                <span class="pillar-tag">Bütüncül Müfredat</span>
+            </div>
+
+            <div class="pillar-card">
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                    </svg>
+                </div>
+                <h3>Potansiyeli Keşfetme</h3>
+                <p>Her öğrencinin öğrenme hızı, ilgi alanı ve bilişsel güçlü yönlerini analiz ederek kişiselleştirilmiş öğrenme rotaları oluşturan adaptif sistemler.</p>
+                <span class="pillar-tag">Bireyselleştirilmiş Öğrenme</span>
+            </div>
+
+            <div class="pillar-card">
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3>Öğretmenleri Güçlendirme</h3>
+                <p>Rutin değerlendirme ve planlama yükünü azaltıp öğretmene rehberlik, mentorluk ve birebir etkileşim için nitelikli zaman kazandıran akıllı araçlar.</p>
+                <span class="pillar-tag">Pedagojik Liderlik</span>
+            </div>
+
+            <div class="pillar-card">
+                <div class="icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <h3>Geleceğin Öğrenme Deneyimi</h3>
+                <p>Simülasyonlar, etkileşimli görselleştirmeler ve üretken yapay zekâ laboratuvarları ile öğrencileri pasif dinleyiciden aktif üreticiye dönüştüren ortamlar.</p>
+                <span class="pillar-tag">Yenilikçi Teknolojiler</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- İnteraktif Ders Entegrasyon Simülatörü -->
+    <section id="dersler">
+        <div class="section-header">
+            <h2>Derslerde <span class="gradient-text">Yapay Zekâ Sinerjisi</span></h2>
+            <p>Farklı ders disiplinlerinde yapay zekâ modellerinin öğrenme süreçlerini nasıl zenginleştirdiğini seçerek inceleyin.</p>
+        </div>
+
+        <div class="interactive-panel">
+            <div class="subject-tabs">
+                <button class="subject-btn active" onclick="selectSubject(0)">
+                    <span>📐 Matematik & Algoritmik Düşünce</span>
+                    <span>→</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject(1)">
+                    <span>📖 Dil, Edebiyat & Okuma-Yazma</span>
+                    <span>→</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject(2)">
+                    <span>🔬 Fen Bilimleri & Doğa Simülasyonu</span>
+                    <span>→</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject(3)">
+                    <span>🎨 Görsel Sanatlar & Yaratıcı Tasarım</span>
+                    <span>→</span>
+                </button>
+                <button class="subject-btn" onclick="selectSubject(4)">
+                    <span>🌍 Sosyal Bilgiler & Kültür Analizi</span>
+                    <span>→</span>
+                </button>
+            </div>
+
+            <div class="subject-display">
+                <canvas id="wave-canvas" width="600" height="170"></canvas>
+                <div class="subject-info">
+                    <h3 id="subj-title">Matematik & Algoritmik Düşünce</h3>
+                    <p id="subj-desc">Öğrencinin problem çözme adımlarını gerçek zamanlı analiz eder; kavram yanılgılarını tespit ederek soyut formülleri etkileşimli geometrik modellere dönüştürür.</p>
+                    <div class="metrics">
+                        <div class="metric-box">
+                            <span class="metric-label">Kavramsal Kalıcılık Artışı: <strong id="m1-val">%92</strong></span>
+                            <div class="progress-bar"><div id="m1-bar" class="progress-fill" style="width: 92%;"></div></div>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-label">Bireysel Hıza Uyum Oranı: <strong id="m2-val">%96</strong></span>
+                            <div class="progress-bar"><div id="m2-bar" class="progress-fill" style="width: 96%;"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Öğrenci Potansiyeli Radar Grafiği -->
+    <section id="potansiyel">
+        <div class="section-header">
+            <h2>Öğrenci Potansiyeli <span class="gradient-text">Keşif Simülatörü</span></h2>
+            <p>Kaydırıcıları değiştirerek yapay zekâ destekli öğrenme ortamlarının öğrenci yetkinlik poligonunu nasıl genişlettiğini gözlemleyin.</p>
+        </div>
+
+        <div class="radar-section">
+            <div>
+                <h3>Çok Boyutlu Gelişim Haritası</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">
+                    Standart sınav odaklı değerlendirmeler yerine, öğrencinin merakını, analitik düşüncesini ve yaratıcılığını bütüncül olarak izleyen dinamik geometri modeli:
+                </p>
+
+                <div class="controls-list">
+                    <div class="control-item">
+                        <label><span>Analitik Problem Çözme</span> <span id="v0">88%</span></label>
+                        <input type="range" min="30" max="100" value="88" oninput="updateRadar(0, this.value)">
+                    </div>
+                    <div class="control-item">
+                        <label><span>Yaratıcı ve Üretken Düşünme</span> <span id="v1">85%</span></label>
+                        <input type="range" min="30" max="100" value="85" oninput="updateRadar(1, this.value)">
+                    </div>
+                    <div class="control-item">
+                        <label><span>Dijital & YZ Okuryazarlığı</span> <span id="v2">94%</span></label>
+                        <input type="range" min="30" max="100" value="94" oninput="updateRadar(2, this.value)">
+                    </div>
+                    <div class="control-item">
+                        <label><span>İşbirlikçi Öğrenme & İletişim</span> <span id="v3">82%</span></label>
+                        <input type="range" min="30" max="100" value="82" oninput="updateRadar(3, this.value)">
+                    </div>
+                    <div class="control-item">
+                        <label><span>Öz-Düzenleme & Merak Güdüsü</span> <span id="v4">90%</span></label>
+                        <input type="range" min="30" max="100" value="90" oninput="updateRadar(4, this.value)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="radar-container">
+                <canvas id="radar-canvas" width="380" height="380"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt Bilgi -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="logo" style="justify-content: center;">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Eğitim<span>YZ</span> Vizyon Platformu
+            </a>
+            <p class="footer-vision">
+                Yapay zekâyı tüm derslerde etkin kullanarak eğitimi dönüştürmek; her öğrencinin potansiyelini keşfetmesini sağlayan, öğretmenleri güçlendiren ve geleceğin öğrenme deneyimlerini şekillendiren yenilikçi teknolojiler geliştirmek.
+            </p>
+            <p class="copyright">
+                © 2026 Eğitimde Yapay Zekâ Vizyonu • %100 Yerel ve Bağımsız HTML5 / Canvas Mimarisi ile Çalışır.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Saf JavaScript: Geometrik Şekiller, Animasyonlar ve Etkileşim -->
+    <script>
+        /* ==========================================================
+           1. ARKA PLAN ETKİLEŞİMLİ SİNİR AĞI VE GEOMETRİK PARÇACIKLAR
+           ========================================================== */
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        function resizeBg() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        window.addEventListener('resize', resizeBg);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.size = Math.random() * 2.5 + 1;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.shape = Math.floor(Math.random() * 3); // 0: Daire, 1: Kare, 2: Üçgen
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > bgCanvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > bgCanvas.height) this.vy *= -1;
+
+                if (mouse.x !== null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        this.x -= dx * 0.015;
+                        this.y -= dy * 0.015;
+                    }
+                }
+            }
+
+            draw() {
+                bgCtx.fillStyle = 'rgba(56, 189, 248, 0.55)';
+                bgCtx.beginPath();
+                if (this.shape === 0) {
+                    bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                } else if (this.shape === 1) {
+                    bgCtx.rect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
+                } else {
+                    bgCtx.moveTo(this.x, this.y - this.size * 1.3);
+                    bgCtx.lineTo(this.x - this.size * 1.3, this.y + this.size * 1.3);
+                    bgCtx.lineTo(this.x + this.size * 1.3, this.y + this.size * 1.3);
+                    bgCtx.closePath();
+                }
+                bgCtx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            let count = Math.min(Math.floor((bgCanvas.width * bgCanvas.height) / 14000), 95);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateBg() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 130) {
+                        bgCtx.strokeStyle = `rgba(129, 140, 248, ${(1 - dist / 130) * 0.25})`;
+                        bgCtx.lineWidth = 1;
+                        bgCtx.beginPath();
+                        bgCtx.moveTo(particles[i].x, particles[i].y);
+                        bgCtx.lineTo(particles[j].x, particles[j].y);
+                        bgCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateBg);
+        }
+
+        resizeBg();
+        animateBg();
+
+        /* ==========================================================
+           2. HERO 3B ETKİLEŞİMLİ BİLGİ KÜRESİ (3D ICOSAHEDRON & NODES)
+           ========================================================== */
+        const sphereCanvas = document.getElementById('sphere-canvas');
+        const sCtx = sphereCanvas.getContext('2d');
+        const nodes = [];
+        const edges = [];
+        let rotX = 0.004;
+        let rotY = 0.006;
+        let isDragging = false;
+        let prevMouse = { x: 0, y: 0 };
+
+        const nodeCount = 42;
+        const goldenRatio = (1 + Math.sqrt(5)) / 2;
+
+        for (let i = 0; i < nodeCount; i++) {
+            const theta = 2 * Math.PI * i / goldenRatio;
+            const phi = Math.acos(1 - 2 * (i + 0.5) / nodeCount);
+            const r = 155;
+            nodes.push({
+                x: r * Math.sin(phi) * Math.cos(theta),
+                y: r * Math.sin(phi) * Math.sin(theta),
+                z: r * Math.cos(phi),
+                color: i % 3 === 0 ? '#2dd4bf' : (i % 2 === 0 ? '#38bdf8' : '#818cf8')
+            });
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const dz = nodes[i].z - nodes[j].z;
+                const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+                if (d < 92) {
+                    edges.push([i, j]);
+                }
+            }
+        }
+
+        sphereCanvas.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            prevMouse = { x: e.clientX, y: e.clientY };
+        });
+
+        window.addEventListener('mouseup', () => isDragging = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - prevMouse.x;
+            const dy = e.clientY - prevMouse.y;
+            rotateNodes(dy * 0.008, dx * 0.008);
+            prevMouse = { x: e.clientX, y: e.clientY };
+        });
+
+        function rotateNodes(angleX, angleY) {
+            const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+            const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+
+            nodes.forEach(n => {
+                let y1 = n.y * cosX - n.z * sinX;
+                let z1 = n.z * cosX + n.y * sinX;
+                let x2 = n.x * cosY + z1 * sinY;
+                let z2 = z1 * cosY - n.x * sinY;
+
+                n.x = x2;
+                n.y = y1;
+                n.z = z2;
+            });
+        }
+
+        function animateSphere() {
+            sCtx.clearRect(0, 0, sphereCanvas.width, sphereCanvas.height);
+            const cx = sphereCanvas.width / 2;
+            const cy = sphereCanvas.height / 2;
+
+            if (!isDragging) {
+                rotateNodes(rotX, rotY);
+            }
+
+            const grad = sCtx.createRadialGradient(cx, cy, 10, cx, cy, 160);
+            grad.addColorStop(0, 'rgba(56, 189, 248, 0.22)');
+            grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+            sCtx.fillStyle = grad;
+            sCtx.beginPath();
+            sCtx.arc(cx, cy, 160, 0, Math.PI * 2);
+            sCtx.fill();
+
+            edges.forEach(([i, j]) => {
+                const n1 = nodes[i];
+                const n2 = nodes[j];
+                const depth = ((n1.z + n2.z) / 2 + 160) / 320;
+                sCtx.strokeStyle = `rgba(56, 189, 248, ${0.12 + depth * 0.45})`;
+                sCtx.lineWidth = 0.8 + depth * 1.2;
+                sCtx.beginPath();
+                sCtx.moveTo(cx + n1.x, cy + n1.y);
+                sCtx.lineTo(cx + n2.x, cy + n2.y);
+                sCtx.stroke();
+            });
+
+            nodes.forEach(n => {
+                const scale = (n.z + 220) / 380;
+                const radius = Math.max(2, 5.5 * scale);
+                sCtx.fillStyle = n.color;
+                sCtx.beginPath();
+                sCtx.arc(cx + n.x, cy + n.y, radius, 0, Math.PI * 2);
+                sCtx.fill();
+            });
+
+            requestAnimationFrame(animateSphere);
+        }
+        animateSphere();
+
+        /* ==========================================================
+           3. DERS ENTEGRASYON SİMÜLATÖRÜ VE HARMONİK DALGA CANVAS'I
+           ========================================================== */
+        const subjects = [
+            {
+                title: "Matematik & Algoritmik Düşünce",
+                desc: "Öğrencinin problem çözme adımlarını gerçek zamanlı analiz eder; kavram yanılgılarını tespit ederek soyut formülleri etkileşimli 3B geometrik modellere dönüştürür.",
+                m1: 92, m2: 96, freq: 0.025, amp: 38, color: "#38bdf8"
+            },
+            {
+                title: "Dil, Edebiyat & Okuma-Yazma",
+                desc: "İlk okuma-yazma süreçlerinden ileri metin analizlerine kadar ses, telaffuz ve yaratıcı yazarlık becerilerini kişiselleştirilmiş geri bildirimlerle destekler.",
+                m1: 94, m2: 91, freq: 0.018, amp: 45, color: "#2dd4bf"
+            },
+            {
+                title: "Fen Bilimleri & Doğa Simülasyonu",
+                desc: "Laboratuvar deneylerini sanal simülasyonlarla güvenli hale getirir; ekosistem, fizik yasaları ve uzay modellerini öğrencinin hipotezlerine göre canlandırır.",
+                m1: 95, m2: 89, freq: 0.032, amp: 32, color: "#818cf8"
+            },
+            {
+                title: "Görsel Sanatlar & Yaratıcı Tasarım",
+                desc: "Öğrencilerin hayal gücünü destekleyen görsel kompozisyon, 3B modelleme ve renk teorisi araçlarıyla sanatsal ifade yeteneklerini geliştirir.",
+                m1: 89, m2: 98, freq: 0.015, amp: 50, color: "#f472b6"
+            },
+            {
+                title: "Sosyal Bilgiler & Kültür Analizi",
+                desc: "Tarihsel olayları, coğrafi verileri ve kültürel mirası etkileşimli zaman çizelgeleri ve harita simülasyonlarıyla somutlaştırır.",
+                m1: 90, m2: 93, freq: 0.022, amp: 35, color: "#fbbf24"
+            }
+        ];
+
+        let currentSubj = subjects[0];
+        let wavePhase = 0;
+        const waveCanvas = document.getElementById('wave-canvas');
+        const wCtx = waveCanvas.getContext('2d');
+
+        function selectSubject(index) {
+            currentSubj = subjects[index];
+            document.querySelectorAll('.subject-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === index);
+            });
+            document.getElementById('subj-title').textContent = currentSubj.title;
+            document.getElementById('subj-desc').textContent = currentSubj.desc;
+            document.getElementById('m1-val').textContent = `%${currentSubj.m1}`;
+            document.getElementById('m1-bar').style.width = `${currentSubj.m1}%`;
+            document.getElementById('m2-val').textContent = `%${currentSubj.m2}`;
+            document.getElementById('m2-bar').style.width = `${currentSubj.m2}%`;
+        }
+
+        function animateWave() {
+            wCtx.clearRect(0, 0, waveCanvas.width, waveCanvas.height);
+            wavePhase += 0.045;
+
+            for (let layer = 0; layer < 3; layer++) {
+                wCtx.beginPath();
+                wCtx.strokeStyle = currentSubj.color;
+                wCtx.globalAlpha = 0.85 - layer * 0.25;
+                wCtx.lineWidth = 2.5 - layer * 0.5;
+
+                for (let x = 0; x < waveCanvas.width; x += 4) {
+                    const y = waveCanvas.height / 2 +
+                        Math.sin(x * currentSubj.freq + wavePhase + layer) * (currentSubj.amp - layer * 8) *
+                        Math.sin(x / waveCanvas.width * Math.PI);
+                    if (x === 0) wCtx.moveTo(x, y);
+                    else wCtx.lineTo(x, y);
+                }
+                wCtx.stroke();
+            }
+            wCtx.globalAlpha = 1;
+            requestAnimationFrame(animateWave);
+        }
+        animateWave();
+
+        /* ==========================================================
+           4. ÖĞRENCİ POTANSİYELİ RADAR (POLİGON) GRAFİĞİ
+           ========================================================== */
+        const radarCanvas = document.getElementById('radar-canvas');
+        const rCtx = radarCanvas.getContext('2d');
+        const radarLabels = ["Analitik", "Yaratıcılık", "YZ Okuryazarlığı", "İletişim", "Merak & Öz-Düzenleme"];
+        const radarValues = [88, 85, 94, 82, 90];
+
+        function updateRadar(index, val) {
+            radarValues[index] = Number(val);
+            document.getElementById(`v${index}`).textContent = `${val}%`;
+            drawRadar();
+        }
+
+        function drawRadar() {
+            rCtx.clearRect(0, 0, radarCanvas.width, radarCanvas.height);
+            const cx = radarCanvas.width / 2;
+            const cy = radarCanvas.height / 2;
+            const maxR = 130;
+            const sides = radarLabels.length;
+
+            for (let level = 1; level <= 4; level++) {
+                const r = (maxR / 4) * level;
+                rCtx.beginPath();
+                for (let i = 0; i < sides; i++) {
+                    const angle = (Math.PI * 2 * i) / sides - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    if (i === 0) rCtx.moveTo(x, y);
+                    else rCtx.lineTo(x, y);
+                }
+                rCtx.closePath();
+                rCtx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+                rCtx.lineWidth = 1;
+                rCtx.stroke();
+            }
+
+            for (let i = 0; i < sides; i++) {
+                const angle = (Math.PI * 2 * i) / sides - Math.PI / 2;
+                const x = cx + maxR * Math.cos(angle);
+                const y = cy + maxR * Math.sin(angle);
+
+                rCtx.beginPath();
+                rCtx.moveTo(cx, cy);
+                rCtx.lineTo(x, y);
+                rCtx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+                rCtx.stroke();
+
+                const lx = cx + (maxR + 28) * Math.cos(angle);
+                const ly = cy + (maxR + 20) * Math.sin(angle);
+                rCtx.fillStyle = '#cbd5e1';
+                rCtx.font = '600 12px Segoe UI, sans-serif';
+                rCtx.textAlign = 'center';
+                rCtx.textBaseline = 'middle';
+                rCtx.fillText(radarLabels[i], lx, ly);
+            }
+
+            rCtx.beginPath();
+            for (let i = 0; i < sides; i++) {
+                const angle = (Math.PI * 2 * i) / sides - Math.PI / 2;
+                const r = (radarValues[i] / 100) * maxR;
+                const x = cx + r * Math.cos(angle);
+                const y = cy + r * Math.sin(angle);
+                if (i === 0) rCtx.moveTo(x, y);
+                else rCtx.lineTo(x, y);
+            }
+            rCtx.closePath();
+            rCtx.fillStyle = 'rgba(56, 189, 248, 0.28)';
+            rCtx.fill();
+            rCtx.strokeStyle = '#2dd4bf';
+            rCtx.lineWidth = 2.5;
+            rCtx.stroke();
+
+            for (let i = 0; i < sides; i++) {
+                const angle = (Math.PI * 2 * i) / sides - Math.PI / 2;
+                const r = (radarValues[i] / 100) * maxR;
+                const x = cx + r * Math.cos(angle);
+                const y = cy + r * Math.sin(angle);
+                rCtx.beginPath();
+                rCtx.arc(x, y, 5, 0, Math.PI * 2);
+                rCtx.fillStyle = '#38bdf8';
+                rCtx.fill();
+                rCtx.strokeStyle = '#070b19';
+                rCtx.lineWidth = 1.5;
+                rCtx.stroke();
+            }
+        }
+        drawRadar();
+    </script>
+</body>
+</html>
